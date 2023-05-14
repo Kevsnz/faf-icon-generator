@@ -17,7 +17,7 @@ Generated icons will be placed into **done_icons** (PNGs) and **done_ddss** (DDS
 
 ## Requirements
 
-Application has two required packages to be installed into system on virtual python environment:
+Application requires two packages to be installed into system or virtual python environment:
 
 - [pillow](https://pypi.org/project/Pillow/)
 - [wand](https://pypi.org/project/Wand/)
