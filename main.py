@@ -130,6 +130,9 @@ def draw_commanders():
 
 
 def main():
+    os.makedirs('done_icons', exist_ok=True)
+    os.makedirs('done_ddss', exist_ok=True)
+
     bombers = (
         ut.UnitType.Antinavy,
         ut.UnitType.DirectFire,
