@@ -23,11 +23,11 @@ def save_dds(filename: str):
     with image.Image(filename=os.path.join('done_icons', f'{filename}.png')) as img:
         img.format = 'DDS'
         img.compression = 'dxt5'
-        img.save(filename=os.path.join('done_ddss', f'{filename}.dds'))
+        img.save(filename=os.path.join('mod', 'custom-strategic-icons', f'{filename}.dds'))
 
 
-# Extend image so that it's dimensions are a multiple of 4
 def bring_to_four(img: Image) -> Image:
+    """Extends an image so that it's dimensions are a multiple of 4"""
     w, h = img.size
     w = int(math.ceil(w / 4)) * 4
     h = int(math.ceil(h / 4)) * 4
@@ -77,7 +77,9 @@ def draw_icon(mode: im.IconMode, unit_shape: shapes.Shape, tech_level: int, unit
     img.alpha_composite(icon, (0, 0 if tech_level == 0 else sizes.TECH_LEVEL_HEIGHT))
 
     img = bring_to_four(img)
-    img.save(f'done_icons\\icon_{unit_shape.name}{tech_level if tech_level > 0 else ""}_{unit_type.name}_{mode.name}.png'.lower(), 'PNG')
+    img.save(
+        os.path.join('done_icons', f'icon_{unit_shape.name}{tech_level if tech_level > 0 else ""}_{unit_type.name}_{mode.name}.png'.lower()), 'PNG'
+    )
     save_dds(f'icon_{unit_shape.name}{tech_level if tech_level > 0 else ""}_{unit_type.name}_{mode.name}'.lower())
 
 
@@ -86,7 +88,7 @@ def draw_experimental(mode: im.IconMode):
     shapes.draw_experimental(img, mode)
 
     img = bring_to_four(img)
-    img.save(f'done_icons\\icon_experimental_generic_{mode.name}.png'.lower(), 'PNG')
+    img.save(os.path.join('done_icons', f'icon_experimental_generic_{mode.name}.png'.lower()), 'PNG')
     save_dds(f'icon_experimental_generic_{mode.name}'.lower())
 
 
@@ -95,7 +97,7 @@ def draw_wall(mode: im.IconMode):
     shapes.draw_wall(img, mode)
 
     img = bring_to_four(img)
-    img.save(f'done_icons\\icon_structure_wall_{mode.name}.png'.lower(), 'PNG')
+    img.save(os.path.join('done_icons', f'icon_structure_wall_{mode.name}.png'.lower()), 'PNG')
     save_dds(f'icon_structure_wall_{mode.name}'.lower())
 
 
@@ -104,7 +106,7 @@ def draw_nuke():
     shapes.draw_nuke(img)
 
     img = bring_to_four(img)
-    img.save(f'done_icons\\icon_strategic_nuke.png'.lower(), 'PNG')
+    img.save(os.path.join('done_icons', f'icon_strategic_nuke.png'.lower()), 'PNG')
     save_dds(f'icon_strategic_nuke'.lower())
 
 
@@ -113,7 +115,7 @@ def draw_antinuke():
     shapes.draw_antinuke(img)
 
     img = bring_to_four(img)
-    img.save(f'done_icons\\icon_strategic_antinuke.png'.lower(), 'PNG')
+    img.save(os.path.join('done_icons', f'icon_strategic_antinuke.png'.lower()), 'PNG')
     save_dds(f'icon_strategic_antinuke'.lower())
 
 
@@ -123,8 +125,8 @@ def draw_commanders():
         shapes.draw_commander(img, mode)
 
         img = bring_to_four(img)
-        img.save(f'done_icons\\icon_commander_generic_{mode.name}.png'.lower(), 'PNG')
-        img.save(f'done_icons\\icon_subcommander_{mode.name}.png'.lower(), 'PNG')
+        img.save(os.path.join('done_icons', f'icon_commander_generic_{mode.name}.png'.lower()), 'PNG')
+        img.save(os.path.join('done_icons', f'icon_subcommander_{mode.name}.png'.lower()), 'PNG')
         save_dds(f'icon_commander_generic_{mode.name}'.lower())
         save_dds(f'icon_subcommander_{mode.name}'.lower())
 
