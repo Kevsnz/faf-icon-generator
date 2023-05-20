@@ -2,7 +2,8 @@ from __future__ import annotations
 import math
 from collections import namedtuple
 from enum import Enum
-from PIL.Image import Image, new
+from PIL import Image as ImageModule
+from PIL.Image import Image
 from PIL import ImageDraw
 
 import sizes
@@ -222,7 +223,7 @@ class Shape(Enum):
     @staticmethod
     def get_shape_pic(shape: Shape, mode: IconMode) -> Image:
         if (shape, mode) not in type_cache:
-            img = new("RGBA", shape.value.size, (0, 0, 0, 0))
+            img = ImageModule.new("RGBA", shape.value.size, (0, 0, 0, 0))
             shape.value.draw_shape(img, mode)
             # img.save(f'done_shapes\{shape.name}-{mode.name}.png', 'png')
             type_cache[(shape, mode)] = img
