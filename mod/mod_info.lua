@@ -1,0 +1,12 @@
+name = "Generated Strategic Icons"
+uid = "457a2b92-eaf1-1843-gen_strat_icons-v1"
+version = 1
+description = "Procedurally generated vanilla-like strategic icons."
+copyright = "Kevsnz"
+author = "Kevsnz"
+url = "https://github.com/Kevsnz/faf-icon-generator"
+icon = ""
+selectable = true
+enabled = true
+exclusive = false
+ui_only = true
