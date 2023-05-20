@@ -312,7 +312,7 @@ def draw_antinuke(img: Image):
         img_draw.line([(g, h - 1 - g - t), (w - 1 - g - t, g)], colors.COLOR_BLACK)
 
 
-def draw_commander(img: Image, mode: IconMode):
+def draw_commander_old(img: Image, mode: IconMode):
     img_draw = ImageDraw.Draw(img)
     w, h = img.size
 
@@ -341,3 +341,20 @@ def draw_commander(img: Image, mode: IconMode):
             if any([img.getpixel((x + o[0], y + o[1])) == COLOR_BG for o in offsets]):
                 continue
             img.putpixel((x, y), color)
+
+
+def draw_commander(img: Image, mode: IconMode):
+    w, h = img.size
+
+    if mode is IconMode.Rest:
+        orig = ImageModule.open('templates/icon_commander_generic_rest.png')
+    elif mode is IconMode.Over:
+        orig = ImageModule.open('templates/icon_commander_generic_over.png')
+    elif mode is IconMode.Selected:
+        orig = ImageModule.open('templates/icon_commander_generic_selected.png')
+    else:
+        orig = ImageModule.open('templates/icon_commander_generic_selectedover.png')
+
+    resized = orig.resize((w, h), ImageModule.NEAREST)
+
+    img.alpha_composite(resized, (0, 0))
